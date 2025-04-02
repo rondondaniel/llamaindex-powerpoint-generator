@@ -23,7 +23,7 @@ class StructureBuilderTool:
                         "idx": shape.placeholder_format.idx if shape.is_placeholder else None,
                         "has_text_frame": True,
                         "name": shape.name,
-                        # "text": shape.text_frame.text if shape.text_frame else ""
+                        "text": shape.text_frame.text if shape.text_frame else ""
                     }
                     if shape.is_placeholder:
                         text_shape["placeholder_type"] = shape.placeholder_format.type

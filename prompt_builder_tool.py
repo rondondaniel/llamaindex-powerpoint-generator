@@ -14,11 +14,11 @@ class PromptBuilderTool:
             
             {structure}
             
-            You need to generate content that fits into this structure, ensuring that all placeholders are filled appropriately.
+            You need to generate content that fits into this structure, ensuring that all placeholders and text boxes are filled appropriately.
             
             For each slide:
             1. Provide the title for the slide.
-            2. Provide the text content for each text placeholder or text_box.
+            2. Provide the text content for each text placeholder or text box.
             3. If a slide contains a table, generate appropriate data to fill it based on the provided context.
             4. If a slide contains an image placeholder, describe the type of image that should be included.
             
