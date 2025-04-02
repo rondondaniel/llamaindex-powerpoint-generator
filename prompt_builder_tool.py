@@ -1,8 +1,11 @@
 from llama_index.core import PromptTemplate
 
 class PromptBuilderTool:
-    def __init__(self, query: str) -> None:
-        self.query = query
+    def __init__(self) -> None:
+        self._init_message()
+    
+    def _init_message(self) -> None:
+        print("Initializing Prompt Builder...")
     
     def _get_prompt_template(self) -> str:
         prompt = """
@@ -23,11 +26,12 @@ class PromptBuilderTool:
             """
         return prompt
 
-    def build(self, structure: str) -> str:
+    def build(self, query: str, structure: str) -> str:
+        print("Building prompt...")
         prompt_template = PromptTemplate(template=self._get_prompt_template())
         content_prompt = (
             prompt_template.format(
-                topic=self.query,
+                topic=query,
                 structure=structure
             )
         )

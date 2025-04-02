@@ -2,12 +2,16 @@ from pptx import Presentation
 import json
 
 class StructureBuilderTool:
-    def __init__(self, prs: Presentation) -> None:
-        self.prs = prs
+    def __init__(self) -> None:
         self.slide_structure = []
+        self._init_message()
+    
+    def _init_message(self) -> None:
+        print("Initializing Structure Builder...")
 
-    def build_structure(self) -> str:
-        for slide in self.prs.slides:
+    def build_structure(self, prs: Presentation) -> str:
+        print("Building structure...")
+        for slide in prs.slides:
             structure = {"placeholders": []}
             
             # Iterate through each shape in the slide
