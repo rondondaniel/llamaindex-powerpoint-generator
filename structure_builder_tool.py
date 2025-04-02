@@ -2,8 +2,8 @@ from pptx import Presentation
 import json
 
 class StructureBuilderTool:
-    def __init__(self, template_path: str) -> None:
-        self.prs = Presentation(template_path)
+    def __init__(self, prs: Presentation) -> None:
+        self.prs = prs
         self.slide_structure = []
 
     def build_structure(self) -> str:
