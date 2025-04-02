@@ -86,5 +86,9 @@ templates/*.pptx
 templates/*.potx
 templates/*.ppt
 
+# Output
+output/*.pptx
+output/*.potx
+
 # Schemas
 schema*.json

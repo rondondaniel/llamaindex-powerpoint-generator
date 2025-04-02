@@ -36,6 +36,7 @@ class PowerpointGenerator:
         for placeholder in placeholders:
             for shape in slide.shapes:
                 if shape.is_placeholder and placeholder.get("name") in shape.name:
+                    print("Populating text placeholder...")
                     if placeholder.get("text") and shape.has_text_frame:
                         shape.text = placeholder["text"]
 
@@ -56,6 +57,7 @@ class PowerpointGenerator:
         for placeholder in placeholders:
             table_data = placeholder.get("table_structure")
             if table_data:
+                print("Populating table...")
                 for shape in slide.shapes:
                     if shape.has_table:
                         table = shape.table
@@ -68,6 +70,7 @@ class PowerpointGenerator:
         print("Populating slides...")
         for i, slide_data in enumerate(slides):
             if i < len(prs.slides):
+                print(f"Populating slide {i+1}...")
                 self._populate_slides(prs.slides[i], slide_data)
     
     def generate(self, prs: Presentation, content_prompt: str, llm: OpenAI, output_path: str) -> None:

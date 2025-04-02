@@ -1,5 +1,5 @@
 from structure_builder_tool import StructureBuilderTool
-from powerpoing_generator import PowerpointGenerator
+from powerpoint_generator import PowerpointGenerator
 from prompt_builder_tool import PromptBuilderTool
 from llama_index.llms.openai import OpenAI
 from pptx import Presentation
