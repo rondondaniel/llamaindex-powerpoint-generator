@@ -18,7 +18,7 @@ class PromptBuilderTool:
             
             For each slide:
             1. Provide the title for the slide.
-            2. Provide the text content for each text placeholder.
+            2. Provide the text content for each text placeholder or text_box.
             3. If a slide contains a table, generate appropriate data to fill it based on the provided context.
             4. If a slide contains an image placeholder, describe the type of image that should be included.
             

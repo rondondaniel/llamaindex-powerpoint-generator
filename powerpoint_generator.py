@@ -31,12 +31,12 @@ class PowerpointGenerator:
     def _populate_slides(self, slide: dict, slide_data: dict) -> None:
         # Get the list of placeholders
         placeholders = slide_data.get("placeholders", [])
-
+        
         # Populate text placeholders
         for placeholder in placeholders:
             for shape in slide.shapes:
-                if shape.is_placeholder and placeholder.get("name") in shape.name:
-                    print("Populating text placeholder...")
+                if shape.has_text_frame and placeholder.get("name") in shape.name:
+                    print(f"Populating text shape: {shape.name}")
                     if placeholder.get("text") and shape.has_text_frame:
                         shape.text = placeholder["text"]
 
