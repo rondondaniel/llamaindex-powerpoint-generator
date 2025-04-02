@@ -15,14 +15,13 @@ powerpoint_generator: PowerpointGenerator = PowerpointGenerator()
 if __name__ == "__main__":
     template_path: str = "templates/prez_template.pptx"
     query: str = "Create an example of pitch for a new product named \"Nose\", a platform that helps investors to find the best investment opportunities."
-    model_name = "gpt-4o-mini"
+    model_name: str = "gpt-4o-mini"
+    output_path: str = "output/prez.pptx"
     prs = Presentation(template_path)
     llm = OpenAI(model=model_name,api_key=os.getenv("OPENAI_API_KEY"))
     
     structure: str = structure_builder.build_structure(prs)
     content_prompt: str = prompt_builder.build(query, structure)
-    slides_response = powerpoint_generator.generate(content_prompt, llm)
-    slides = powerpoint_generator.extract_json(slides_response)
-    pprint(slides)
+    powerpoint_generator.generate(prs, content_prompt, llm, output_path)
     
     
