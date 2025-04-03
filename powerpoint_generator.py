@@ -36,8 +36,8 @@ class PowerpointGenerator:
         for placeholder in placeholders:
             for shape in slide.shapes:
                 if shape.has_text_frame and placeholder.get("name") in shape.name:
-                    print(f"Populating text shape: {shape.name}")
                     if placeholder.get("text") and shape.has_text_frame:
+                        print(f"Populating text shape: {shape.name}. Text: {placeholder['text']}")
                         shape.text = placeholder["text"]
 
         # Populate image placeholders
@@ -76,7 +76,10 @@ class PowerpointGenerator:
     def generate(self, prs: Presentation, content_prompt: str, llm: OpenAI, output_path: str) -> None:
         print("Generating slides...")
         try:
-            slides_response = llm.complete(content_prompt, True).text
+            slides_response = llm.complete(
+                prompt=content_prompt,
+                formatted=True
+            ).text
             slides = self._extract_json(slides_response)
             self._populate_all_slides(prs, slides)
             prs.save(output_path)

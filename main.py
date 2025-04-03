@@ -7,20 +7,24 @@ import dotenv
 import os
 
 dotenv.load_dotenv()
+API_KEY: str = os.getenv("OPENAI_API_KEY")
+if not API_KEY:
+    raise ValueError("OPENAI_API_KEY not found in the environment variables.")
+
 prompt_builder: PromptBuilderTool = PromptBuilderTool()
 structure_builder: StructureBuilderTool = StructureBuilderTool()
 powerpoint_generator: PowerpointGenerator = PowerpointGenerator()
 
 if __name__ == "__main__":
-    template_path: str = "templates/prez_template.pptx"
+    template_path: str = "templates/pitch.pptx"
     query: str = """
         Programmation appliquée à l'analyse de données dont l'objectif de fournir aux apprenants les compétences nécessaires pour appliquer des techniques de programmation à l'analyse de données.
         En utilisant principalement le langage Python et ses bibliothèques spécialisées, les apprenants apprendront à manipuler, analyser et visualiser des données pour extraire des informations pertinentes.
     """
     model_name: str = "gpt-4o-mini"
-    output_path: str = "output/prez.pptx"
+    output_path: str = "output/pitch.pptx"
     prs: Presentation = Presentation(template_path)
-    llm: OpenAI = OpenAI(model=model_name,api_key=os.getenv("OPENAI_API_KEY"))
+    llm: OpenAI = OpenAI(model=model_name,api_key=API_KEY)
     
     structure: str = structure_builder.build_structure(prs)
     with open("output/structure.tmp", "w") as f:
